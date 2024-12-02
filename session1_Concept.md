@@ -1,0 +1,1 @@
+O meu conceito de rede é a comunicação e a sua vertente fisica, seja a nivel local seja a nivel mundial, de vários dispositivos ligados entre si, este tipo de conexão é vital para soluções mais complexas e que necessitem a comunicação entre si sendo uma pedra basilar da democracia e sociedade em geral. 
