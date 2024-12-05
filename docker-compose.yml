@@ -1,42 +1,52 @@
-# services:
-#   app1:
-#     image: nginx:latest
-#     ports:
-#       - 80
-
-
-#   app2:
-#     image: busybox:latest
-#     command: sleep infinity
+version: '3.8'
 
 services:
   busybox_ipv4:
     image: busybox
-    command: sleep 3600
+    command: sleep infinity
     networks:
       - ipv4_net
 
   busybox_ipv6:
     image: busybox
-    command: sleep 3600
+    command: sleep infinity
     networks:
       - ipv6_net
+  
+  busybox_3rd:
+    image: busybox
+    command: sleep infinity
+    networks:
+      - 3rd_net
 
 networks:
   ipv4_net:
     driver: bridge
     driver_opts:
-      com.docker.network.enable_ipv6: "false"  # Disable IPv6
+      com.docker.network.enable_ipv6: "false"  
     ipam:
       config:
-        - subnet: 192.168.1.0/24  # IPv4 subnet
+        - subnet: 192.168.1.0/24 
 
   ipv6_net:
     driver: bridge
     driver_opts:
-      com.docker.network.enable_ipv6: "true"  # Enable IPv6
+      com.docker.network.enable_ipv6: "true"  
     ipam:
       driver: default
       config:
-        - subnet: fd00:dead:beef::/64  # IPv6 subnet
-        # No IPv4 subnet is defined, so only IPv6 is available
+        - subnet: fd00:dead:beef::/64
+
+  3rd_net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"  
+    ipam:
+      config:
+        - subnet: 192.168.2.0/24  
+
+  overlay_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.4.0/24
