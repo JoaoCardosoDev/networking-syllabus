@@ -17,14 +17,14 @@ services:
     depends_on:
       - python_server
 
-  python_client2:
-    image: python:3.13-slim
-    volumes:
-      - .:/app
-    working_dir: /app
-    command: python client.py
-    depends_on:
-      - python_server
+  # python_client2:
+  #   image: python:3.13-slim
+  #   volumes:
+  #     - .:/app
+  #   working_dir: /app
+  #   command: python client.py
+  #   depends_on:
+  #     - python_server
   # telnet:
   #   image: busybox
   #   command: sleep infinity
