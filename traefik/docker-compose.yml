@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  traefik:
+    image: traefik:v2.10
+    command:
+      - "--api.insecure=true" 
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  webA:
+    image: nginx:alpine
+    labels:
+      - "traefik.enable=true"  
+      - "traefik.http.routers.webA.rule=Host(`webA.example.local`)"
+      - "traefik.http.services.webA.loadbalancer.server.port=80" 
+    volumes:
+      - ./html/webA.html:/usr/share/nginx/html/index.html
+
+
+  webB:
+    image: nginx:alpine
+    labels:
+      - "traefik.enable=true"  
+      - "traefik.http.routers.webB.rule=Host(`webB.example.local`)"
+      - "traefik.http.services.webB.loadbalancer.server.port=80" 
+    volumes:
+      - ./html/webB.html:/usr/share/nginx/html/index.html
+
+
