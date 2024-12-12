@@ -8,6 +8,7 @@ services:
       - .:/app
     working_dir: /app
     networks:
+      - fast
       - web
     deploy:
       replicas: 1
@@ -39,11 +40,16 @@ services:
       - "./certs:/certs" 
       - "./dynamic.yml:/dynamic.yml"
     networks:
+      - reverse
       - web
 
 networks:
-  web:
+  fast:
     driver: bridge
     ipam:
       config:
         - subnet: 192.168.100.0/24
+  reverse:
+    driver: bridge
+  web:
+    driver: bridge
