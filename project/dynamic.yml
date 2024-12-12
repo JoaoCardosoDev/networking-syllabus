@@ -15,13 +15,13 @@ http:
       rule: "Host(`localhost`)"
       service: fastapi
       entryPoints:
-        - web  # This is for HTTP, redirected to HTTPS
+        - web
       middlewares:
-        - redirect-to-https  # Redirect HTTP to HTTPS
+        - redirect-to-https
 
     fastapi-https:
       rule: "Host(`localhost`)"
       service: fastapi
       entryPoints:
-        - websecure  # This is for HTTPS
-      tls: {}  # Enable TLS for this router
+        - websecure
+      tls: {}

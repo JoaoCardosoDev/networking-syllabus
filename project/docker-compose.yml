@@ -9,16 +9,17 @@ services:
     working_dir: /app
     networks:
       - web
+    deploy:
+      replicas: 1
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.fastapi-http.rule=Host(`localhost`)"
       - "traefik.http.services.fastapi.loadbalancer.server.port=8000"
-      - "traefik.http.routers.fastapi-http.entrypoints=web"  # HTTP EntryPoint
-      - "traefik.http.routers.fastapi-http.middlewares=redirect-to-https"  # Redirect HTTP to HTTPS
+      - "traefik.http.routers.fastapi-http.middlewares=redirect-to-https"
       - "traefik.http.routers.fastapi-https.rule=Host(`localhost`)"
       - "traefik.http.services.fastapi.loadbalancer.server.port=8000"
-      - "traefik.http.routers.fastapi-https.entrypoints=websecure"  # HTTPS EntryPoint
-      - "traefik.http.routers.fastapi-https.tls=true"  # Enable TLS
+      - "traefik.http.routers.fastapi-https.entrypoints=websecure"
+      - "traefik.http.routers.fastapi-https.tls=true"
 
   traefik:
     image: traefik:v2.10
@@ -43,3 +44,6 @@ services:
 networks:
   web:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
