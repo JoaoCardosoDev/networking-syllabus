@@ -42,6 +42,12 @@ services:
       - reverse
       - web
 
+  busybox:
+    image: busybox
+    command: sleep infinity
+    networks:
+      - reverse
+
 networks:
   fast:
     driver: bridge

@@ -43,8 +43,10 @@ This project demonstrates a FastAPI application deployed behind Traefik, leverag
    - Swagger documentation: [https://localhost/docs](https://localhost/docs)
 
 4. To verify the CIDR configuration:
-
    - Ensure that only requests from the `192.168.100.0/24` subnet can access the `fastapi-app` service.
+
+5. **Network Segmentation Test:**
+   - The BusyBox container is included to demonstrate network segmentation. It is connected to the `reverse` network and should not be able to access the `fastapi-app` service on the `fast` network.
 
 ## **Components Overview**
 
