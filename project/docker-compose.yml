@@ -14,11 +14,10 @@ services:
       replicas: 3
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.fastapi-http.rule=Host(`localhost`)"
-      - "traefik.http.services.fastapi.loadbalancer.server.port=8000"
-      - "traefik.http.routers.fastapi-http.middlewares=redirect-to-https"
+      - "traefik.http.routers.fastapi-http.rule=Host(`http.localhost`)"
       - "traefik.http.routers.fastapi-https.rule=Host(`localhost`)"
       - "traefik.http.services.fastapi.loadbalancer.server.port=8000"
+      - "traefik.http.routers.fastapi-http.middlewares=redirect-to-https"
       - "traefik.http.routers.fastapi-https.entrypoints=websecure"
       - "traefik.http.routers.fastapi-https.tls=true"
 
