@@ -43,10 +43,8 @@ This project demonstrates a FastAPI application deployed behind Traefik, leverag
    - Swagger documentation: [https://localhost/docs](https://localhost/docs)
 
 4. To verify the CIDR configuration:
-   - Ensure that only requests from the `192.168.100.0/24` subnet can access the `fastapi-app` service.
 
-5. **Network Segmentation Test:**
-   - The BusyBox container is included to demonstrate network segmentation. It is connected to the `reverse` network and should not be able to access the `fastapi-app` service on the `fast` network.
+   - Ensure that only requests from the `192.168.100.0/24` subnet can access the `fastapi-app` service.
 
 ## **Components Overview**
 
@@ -130,12 +128,12 @@ This project demonstrates a FastAPI application deployed behind Traefik, leverag
 
    ```json
    {
-     "message": "Product created",
-     "product": {
-       "id": 1,
-       "name": "Laptop",
-       "price": 999.99
-     }
+       "message": "Product created",
+       "product": {
+           "id": 1,
+           "name": "Laptop",
+           "price": 999.99
+       }
    }
    ```
 
@@ -182,7 +180,6 @@ Specifies Traefik's routers, middleware, and TLS certificates.
 Implements the REST API using FastAPI.
 
 - **CRUD Endpoints:**
-
   ```python
   @app.get("/products")
   def get_products():
